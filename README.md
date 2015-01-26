@@ -24,6 +24,13 @@ Call Google Prediction API using Python
 - In your project dashboard, select*APIs & auth > Credentials*.
 - Click *Create New Client ID* and select the *Installed application* type. Next, look for your application's client ID and client secret in the relevant table.
 
+##Run the file
+- Open a terminal and go to the directory where your file is saved.
+- Execute the following command:
+```
+python your_file_name  your_client_id  your_client_secret
+```
+
 
 #Examples
 - Using Trained Models
