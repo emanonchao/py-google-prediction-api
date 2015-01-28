@@ -25,6 +25,7 @@ Call Google Prediction API using Python
 ####Step3 Get credentials
 - In your project dashboard, select*APIs & auth > Credentials*.
 - Click *Create New Client ID* and select the *Installed application* type. Next, look for your application's client ID and client secret in the relevant table.
+- Add your application's client ID and client secret into *settings.py*
 
 #Usage
 - A simple example showing how to predict
