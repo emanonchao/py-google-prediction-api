@@ -33,23 +33,35 @@ class TrainedModel(object):
         self.m = model_name
     
     #Train a Prediction API model
-    def insert(self, storage_data_location=None, training_instances=None):
+    def insert(self, storage_data_location=None, output_value=None, features=None):
         body= {
                 "storageDataLocation": storage_data_location,
                 "id": self.m,
-                "trainingInstances": training_instances,
+                "trainingInstances": [
+                            {"output": output_value,
+                             "csvInstance": features
+                             }
+                           ]
              } 
         return service.trainedmodels().insert(project=self.p, body=body).execute()
-    
+        
+    #Train a Prediction API model using a dataset
+    def insert_dataset(self, training_data):
+            body= {
+                   "id": self.m,
+                   "trainingInstances": training_data
+                   }
+            return service.trainedmodels().insert(project=self.p, body=body).execute()
+            
     #Check training status of your model
     def get(self):
         return service.trainedmodels().get(project=self.p, id=self.m).execute()
     
     #Submit model id and request a prediction    
-    def predict(self, csv_instances):
+    def predict(self, features):
         body={
               "input": {
-                "csvInstance": csv_instances
+                "csvInstance": features
                 }
             }
         return service.trainedmodels().predict(project=self.p, id=self.m, body=body).execute()
@@ -67,11 +79,11 @@ class TrainedModel(object):
         return service.trainedmodels().analyze(project=self.p, id=self.m).execute()
     
     #Add new data to a trained model    
-    def update(self, output, csv_instances):
+    def update(self, output, features):
         body= {
                "output": output,
                 "csvInstance":[
-                csv_instances
+                features
                 ]
               }
         return service.trainedmodels().update(project=self.p, id=self.m, body=body).execute()
