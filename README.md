@@ -48,7 +48,7 @@ result = example.predict()
 print result.["outputValue"]  #print the value of your prediction
 
 #When you get new data later, you can also add them to a trained model
-example.update(output_value, csv_instances)
+example.update(output_value, features)
 ```
 There are two ways to train your model: one is to use a data file which is mentioned in the example above, another is to type in training data directly.
 If you wanna use the latter one, and you can skip Step2 in Preparations. In this case, you should change the argument of insert function. Here is the example:
@@ -64,7 +64,7 @@ If you wanna use the latter one, and you can skip Step2 in Preparations. In this
   },
  ]
 '''
-example.insert(output_value, csv_instances)  
+example.insert(output_value, features)  
 ```
 
 
@@ -78,6 +78,9 @@ TrainedModel("PRJECT_ID", "MODEL_NAME).delete()
 
 #List available models
 TrainedModel("PROJECT_ID").list()
+
+#Train a Prediction API model by a dataset
+TrainedModel("PROJECT_ID", "MODEL_NAME").insert(training_data)
 
 
 
