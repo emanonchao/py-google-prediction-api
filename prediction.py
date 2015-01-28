@@ -1,13 +1,13 @@
 import httplib2
-import sys
+import settings
 
 from apiclient.discovery import build
 from oauth2client.file import Storage
 from oauth2client.client import OAuth2WebServerFlow 
 from oauth2client.tools import run
 
-client_id = sys.argv[1]
-client_secret = sys.argv[2]
+client_id = settings.client_id
+client_secret = settings.client_secret
 scope = {'https://www.googleapis.com/auth/devstorage.full_control',
             'https://www.googleapis.com/auth/devstorage.read_only',
             'https://www.googleapis.com/auth/devstorage.read_write',
