@@ -43,10 +43,10 @@ example.insert(storageDataLocation)
 
 #Before doing prediction, you have to check the training status. You can't predict until the training process is done.
 status = example.get()
-while "DONE" not in status.["trainingStatus"]:
+while "DONE" not in status["trainingStatus"]:
  status = example.get()
-result = example.predict()
-print result.["outputValue"]  #print the value of your prediction
+result = example.predict(features)
+print result["outputValue"]  #print the value of your prediction
 
 #When you get new data later, you can also add them to a trained model
 example.update(output_value, features)
